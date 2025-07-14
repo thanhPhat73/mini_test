@@ -1,4 +1,3 @@
-import React from "react";
 import { useUsers } from "../UserProvider";
 
 export type User = {
