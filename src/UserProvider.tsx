@@ -12,11 +12,13 @@ type UserContextType = {
   addUser: (user: Omit<User, "id">) => void;
 };
 
-const UserContext = createContext<UserContextType | null>(null);
+const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export const useUsers = () => {
   const context = useContext(UserContext);
-  if (!context) throw new Error("");
+  if (!context) {
+    throw new Error("useUsers must be used within a UserProvider");
+  }
   return context;
 };
 

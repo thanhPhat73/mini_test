@@ -11,17 +11,14 @@ const AppRouter = () => {
   return (
     <BrowserRouter>
       <Header />
-      <UserProvider
-        children={
-          <Routes>
-            <Route index element={<UserForm />} />
-            <Route path="/users" element={<UserList />} />
-            <Route path="/users/:id" element={<UserDetail />} />
-            <Route path="/*" element={<ErrorPage />} />
-          </Routes>
-        }
-      ></UserProvider>
-
+      <UserProvider>
+        <Routes>
+          <Route index element={<UserForm />} />
+          <Route path="/users" element={<UserList />} />
+          <Route path="/users/:id" element={<UserDetail />} />
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
+      </UserProvider>
       <Footer />
     </BrowserRouter>
   );

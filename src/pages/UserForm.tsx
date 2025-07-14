@@ -10,22 +10,21 @@ type Inputs = {
   age: number;
 };
 
-const schema = yup
-  .object({
-    name: yup.string().required("Name is required"),
-    email: yup.string().email("Invalid email").required("Email is required"),
-    age: yup
-      .number()
-      .typeError("Age must be a number")
-      .required("Age is required")
-      .min(18, "Minimum age is 18")
-      .max(99, "Maximum age is 99"),
-  })
-  .required();
+const schema = yup.object({
+  name: yup.string().required("Name is required"),
+  email: yup.string().email("Invalid email").required("Email is required"),
+  age: yup
+    .number()
+    .typeError("Age must be a number")
+    .required("Age is required") //
+    .min(18, "Minimum age is 18")
+    .max(99, "Maximum age is 99"),
+});
 
 const UserForm = () => {
   const { addUser } = useUsers();
   const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -36,8 +35,7 @@ const UserForm = () => {
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     addUser(data);
-    // navigate("/users");
-    window.location.href = "/users";
+    navigate("/users");
   };
 
   return (
@@ -50,7 +48,7 @@ const UserForm = () => {
 
         <div>
           <label htmlFor="name" className="block font-medium mb-1">
-            Username:
+            Name:
           </label>
           <input
             {...register("name")}
